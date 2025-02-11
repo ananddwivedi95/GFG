@@ -55,7 +55,7 @@ public class CountInversion {
             {
                 newArr[index++]=arr[right++];
             }
-            index=0;
+
             for(int i=0;i<size;i++)
             {
                 arr[start+i]=newArr[i];
