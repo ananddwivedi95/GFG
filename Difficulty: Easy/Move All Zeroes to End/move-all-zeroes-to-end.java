@@ -35,24 +35,24 @@ public class Main {
 class Solution {
     void pushZerosToEnd(int[] arr) {
         // code here
-        int j=0;
-        int start=-1;
-        while(j<arr.length)
-        {
-            if(arr[j]!=0)
-            {
-                arr[start+1]=arr[j];
-                start++;
-                j++;
-            }
-            else
-            {
-                j++;
-            }
-        }
-        for(int i=start+1;i<arr.length;i++)
-        {
-            arr[i]=0;
-        }
+       int i=0;
+       int j=0;
+       while(i<arr.length)
+       {
+           if(arr[i]!=0)
+           {
+               swap(i,j,arr);
+               j++;
+           }
+           i++;
+       }
+       
     }
+    static void swap(int i,int j, int[]arr)
+    {
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    
 }
