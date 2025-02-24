@@ -37,8 +37,7 @@ class Solution {
             if (nums[i] == nums[j]) {
                 j++;
             } else {
-                insert(j, nums, ++index); // Store unique element at index
-                      // Move to next position
+                nums[++index]=nums[j]; // Store unique element at index
                 i = j;
                 j++;
                 count++;
