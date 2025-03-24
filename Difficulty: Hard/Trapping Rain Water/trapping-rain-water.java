@@ -19,41 +19,81 @@ class Sorting {
 
 
 class Solution {
-    public int maxWater(int a[]) {
+    // public int maxWater(int arr[]) {
         
-    int r=a.length-1;
-    int l=0;
-    int leftMax=0;
-    int rightMax=0;
-    int sum=0;
-    while(l<=r)
+    // // using 2 pointer approch
+    //   int left=0; // for left track element
+    //   int right=arr.length-1;  //for right track element
+    //   int leftMax=0;
+    //   int rightMax=0;
+    //   int sum=0;
+    //   while(left<=right)
+    //   {
+    //     if(arr[left]<=arr[right]) //left track
+    //     {
+    //          if(arr[left]>=leftMax)
+    //          {
+    //             leftMax=arr[left];
+    //          }
+    //          else
+    //          {
+    //             sum=sum+(leftMax-arr[left]);
+    //          }
+    //          left++;
+    //     }
+    //     else  //right track
+    //     {
+    //       if(arr[right]>=rightMax)
+    //       {
+    //         rightMax=arr[right];
+    //       }
+    //       else
+    //       {
+    //         sum=sum+(rightMax-arr[right]);
+    //       }
+    //       right--;
+    //     }
+    //   }
+    //   return sum;
+    // }
+    
+    public int maxWater(int arr[])
     {
-        if(a[l]<=a[r])
+        int leftmax=0;
+        int rightmax=0;
+        int left=0;
+        int right=arr.length-1;
+        int sum=0;
+        
+        
+        while(left<=right){
+        
+        if(arr[left]<=arr[right])
         {
-            if(a[l]>=leftMax)
+            if(arr[left]>=leftmax)
             {
-                leftMax=a[l];
+                leftmax=arr[left];
             }
             else
             {
-              sum=sum+(leftMax-a[l]);  
+                sum=sum+(leftmax-arr[left]);
             }
-            l++;
+            left++;
         }
         else
         {
-            if(a[r]>=rightMax)
+            if(arr[right]>=rightmax)
             {
-                rightMax=a[r];
+                rightmax=arr[right];
             }
             else
             {
-                sum=sum+(rightMax-a[r]);
+                sum=sum+(rightmax-arr[right]);
             }
-            r--;
+            right--;
         }
-       
-    }
-     return sum;
+      }
+      
+      return sum;
     }
 }
