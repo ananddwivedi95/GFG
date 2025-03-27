@@ -38,15 +38,13 @@ class Solution {
         // Code Here
         int left=0;
         int right=arr.length-1;
-        int result=arr.length;
-        boolean flag=true;
+        int result=-1;
         while(left<=right)
         {
             int mid=left+(right-left)/2;
             if(target==arr[mid])
             {
-                flag=false;
-                result=Math.min(result,mid);
+                result=mid;
                 right=mid-1;
             }
             else if(target<arr[mid])
@@ -57,10 +55,6 @@ class Solution {
             {
                 left=mid+1;
             }
-        }
-        if(flag==true)
-        {
-            return -1;
         }
         return result;
     }
