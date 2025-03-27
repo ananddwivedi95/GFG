@@ -13,17 +13,20 @@ class GFG {
     ArrayList<Integer> find(int arr[], int target) {
         // code here
         int lb=lowerBound(arr,target);
-        int ub =upperBound(arr,target);
+        int ub=upperBound(arr,target);
         ArrayList<Integer> result= new ArrayList<>();
-        if (lb == arr.length || arr[lb] != target) { 
-            Collections.addAll(result,-1,-1);
-           return result;
-           }
-        result.add(0,lb);
-        result.add(1,ub-1);
+        result.add(-1);
+        result.add(-1);
+        if((lb<arr.length)&&(arr[lb]==target&&arr[ub-1]==target))
+        {
+            result.set(0,lb);
+            result.set(1,ub-1);
+            return result;
+        }
+        
         return result;
     }
-    static int upperBound(int[] arr,int target)
+    static int lowerBound(int[] arr, int target)
     {
         int left=0;
         int right=arr.length-1;
@@ -31,32 +34,33 @@ class GFG {
         while(left<=right)
         {
             int mid=left+(right-left)/2;
-            if(target<arr[mid])
+            if(arr[mid]>=target)
             {
                 result=Math.min(result,mid);
                 right=mid-1;
             }
-            else if(target>=arr[mid])
+            else if(arr[mid]<target)
             {
                 left=mid+1;
             }
         }
         return result;
     }
-    static int lowerBound(int[] arr,int target)
+    static int upperBound(int[] arr, int target)
     {
         int left=0;
         int right=arr.length-1;
         int result=arr.length;
+        
         while(left<=right)
         {
             int mid=left+(right-left)/2;
-            if(target<=arr[mid])
+            if(arr[mid]>target)
             {
-                result=Math.min(result,mid);
+                result=mid;
                 right=mid-1;
             }
-            else if(target>arr[mid])
+            else if(arr[mid]<=target)
             {
                 left=mid+1;
             }
@@ -64,6 +68,7 @@ class GFG {
         return result;
     }
 }
+
 
 
 
