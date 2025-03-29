@@ -9,22 +9,15 @@ import java.util.*;
 
 class Solution {
     public static boolean Search(int[] arr, int target) {
-        // code here
-        // it is similer as the search in rotated array 1
-        
-        //find pivot
-        int pivot=findPivot(arr);
-        boolean result=binarySearch(arr,0,pivot-1,target);
-        if(result==false)
-        {
-            return binarySearch(arr,pivot,arr.length-1,target);
-        }
-        return result;
-        
+       int pivot=findPivot(arr);
+       if(binarySearch(arr,0,pivot-1,target))
+       {
+           return true;
+       }
+       return binarySearch(arr,pivot,arr.length-1,target);
     }
-    static boolean binarySearch(int[] arr,int start,int stop,int target)
+    static boolean binarySearch(int[] arr,int start, int stop,int target)
     {
-        
         int left=start;
         int right=stop;
         while(left<=right)
@@ -36,7 +29,7 @@ class Solution {
             }
             else if(arr[mid]>target)
             {
-                right=mid-1;
+                 right=mid-1;
             }
             else if(arr[mid]<target)
             {
@@ -45,28 +38,30 @@ class Solution {
         }
         return false;
     }
-    static int findPivot(int [] arr)
+    static int findPivot(int[] arr)
     {
         int left=0;
         int right=arr.length-1;
         while(left<right)
         {
+            //skip the duplicate from left side
+            while(left<right && arr[left]==arr[left+1])
+            {
+                left++;
+            }
+            //skip the duplicate from right side
+            while(left<right && arr[right]==arr[right-1])
+            {
+                right--;
+            }
             int mid=left+(right-left)/2;
             if(arr[mid]>arr[right])
             {
                 left=mid+1;
-                while(left<right && arr[left]==arr[left+1])
-                {
-                    left++;
-                }
             }
             else 
             {
                 right=mid;
-                while(left<right && arr[right]==arr[right-1])
-                {
-                    right--;
-                }
             }
         }
         return right;
