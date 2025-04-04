@@ -45,18 +45,22 @@ public class GFG {
 class Solution {
     int search(int[] arr, int target) {
         // Complete this function
+        if(arr[0]<arr[arr.length-1])
+        {
+            return binarySearch(arr,0,arr.length-1,target);
+        }
       int pivot=findPivot(arr);
-      int find=binarySearch(arr,0,pivot-1,target);
-      if(find==-1)
+      if(target>arr[arr.length-1])
       {
-      return binarySearch(arr,pivot,arr.length-1,target);
+          return binarySearch(arr,0,pivot-1,target);
       }
-      return find;
+      return binarySearch(arr,pivot,arr.length-1,target);
+      
     }
-    static int binarySearch(int []arr,int start,int stop,int target)
+    static int binarySearch(int []arr ,int start,int end, int target)
     {
         int left=start;
-        int right=stop;
+        int right=end;
         while(left<=right)
         {
             int mid=left+(right-left)/2;
@@ -64,13 +68,13 @@ class Solution {
             {
                 return mid;
             }
-            else if(arr[mid]>target)
-            {
-                right= mid-1;
-            }
             else if(arr[mid]<target)
             {
                 left=mid+1;
+            }
+            else if(arr[mid]>target)
+            {
+                right=mid-1;
             }
         }
         return -1;
@@ -82,15 +86,15 @@ class Solution {
         while(left<right)
         {
             int mid=left+(right-left)/2;
-            if(arr[mid]>arr[right])
-            {
-                left=mid+1;
-            }
-            else
+            if(arr[mid]<arr[right])
             {
                 right=mid;
             }
+            else if(arr[mid]>=arr[right])
+            {
+                left=mid+1;
+            }
         }
-        return right;
+        return left;
     }
 }
